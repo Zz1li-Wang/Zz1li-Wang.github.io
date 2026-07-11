@@ -1,0 +1,77 @@
+html:not(.dark)
+  --highlight-keyword      : #7b4f87
+  --highlight-background   : #eae5d9
+  --highlight-comment      : #858a80
+  --highlight-foreground   : #3f433f
+  --highlight-string       : #8a5a44
+  --highlight-gutter       : #858a80
+  --highlight-class        : #39727a
+  --highlight-function     : #66733c
+  --prism-builtin          : #9b4f59
+  --prism-property         : #98652f
+  --prism-decorator        : #805d72
+
+
+
+html.dark
+  --highlight-keyword      : #cba6f7
+  --highlight-background   : #181825
+  --highlight-comment      : #6c7086
+  --highlight-foreground   : #cdd6f4
+  --highlight-string       : #a6e3a1
+  --highlight-gutter       : #7f849c
+  --highlight-class        : #89dceb
+  --highlight-function     : #89b4fa
+  --prism-builtin          : #f38ba8
+  --prism-property         : #fab387
+  --prism-decorator        : #f9e2af
+
+figure.highlight
+  padding: 0 0.5em
+  margin: 0.5em 0
+  border-radius: 0.3em
+  overflow: auto
+  position: relative
+  table
+    position relative
+    margin: 0
+    padding: 0
+    border: 0
+    width: 100%
+    border-collapse: collapse
+  .gutter
+    display: none
+  .code
+    padding: 0
+    .line
+      color: var(--highlight-foreground)
+  pre
+    background: var(--highlight-background)
+    margin: 0
+
+pre
+  padding: 10px
+  overflow: auto
+  background: var(--highlight-background)
+  color: var(--highlight-foreground)
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace
+  code
+    padding: 0
+  .comment
+    color: var(--highlight-comment)
+  .string
+    color: var(--highlight-string)
+  .keyword, .doctag
+    color: var(--highlight-keyword)
+  .class_
+    color: var(--highlight-class)
+  .function_
+    color: var(--highlight-function)
+  .tag>.name
+    color: var(--prism-builtin)
+  .attr
+    color: var(--prism-property)
+  .meta
+    color: var(--prism-decorator)
+  .params
+    color: var(--prism-decorator)

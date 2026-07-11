@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>">
+<head>
+  <%- partial('_partial/head',{cache: true}) %>
+</head>
+<body class="theme-body font-sans relative min-h-screen flex flex-col">
+  <%- partial('_partial/header', {cache: true}) %>
+  <main class="pt-14 flex-1">
+    <%- body %>
+  </main>
+  <%- partial('_partial/footer', {cache: true}) %>
+  <div class="back-to-top theme-back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 opacity-80 cursor-pointer text-center">
+    <span class="flex justify-center items-center text-sm">
+      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+      <span id="scrollpercent"><span>0</span> %</span>
+    </span>
+  </div>
+  <%- partial('_partial/after-footer') %>
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+@import 'highlight.styl'
+
+
+:root {
+  --c-bg: #f4f1e8
+  --c-surface: #ebe7dc
+  --c-surface-hover: #e2ddd0
+  --c-text: #3f433f
+  --c-muted: #747970
+  --c-border: #d8d2c4
+  --c-accent: #9a5f3f
+  --c-accent-soft: #ead8ca
+  --c-header: rgba(244, 241, 232, .86)
+  --c-menu: rgba(244, 241, 232, .95)
+  --c-scrollbar: #c8c1b3
+  --c-scrollbar-hover: #aaa294
+}
+
+html.dark
+  --c-bg: #1e1e2e
+  --c-surface: #313244
+  --c-surface-hover: #45475a
+  --c-text: #cdd6f4
+  --c-muted: #a6adc8
+  --c-border: #45475a
+  --c-accent: #cba6f7
+  --c-accent-soft: #3b314d
+  --c-header: rgba(30, 30, 46, .86)
+  --c-menu: rgba(30, 30, 46, .95)
+  --c-scrollbar: #45475a
+  --c-scrollbar-hover: #6c7086
+
+body.theme-body
+  background-color: var(--c-bg)
+  color: var(--c-text)
+  transition: background-color .25s ease, color .25s ease
+
+.theme-header
+  background-color: var(--c-header)
+  border-color: var(--c-border)
+
+.theme-menu
+  background-color: var(--c-menu)
+
+.theme-footer,
+.theme-muted
+  color: var(--c-muted)
+
+.theme-border
+  border-color: var(--c-border)
+
+.theme-tag
+  background-color: var(--c-surface)
+
+.theme-tag:hover
+  background-color: var(--c-surface-hover)
+
+.theme-back-to-top
+  background-color: var(--c-surface-hover)
+  color: var(--c-text)
+
+.post-content.prose
+  --tw-prose-body: var(--c-text)
+  --tw-prose-headings: var(--c-text)
+  --tw-prose-lead: var(--c-muted)
+  --tw-prose-links: var(--c-accent)
+  --tw-prose-bold: var(--c-text)
+  --tw-prose-counters: var(--c-muted)
+  --tw-prose-bullets: var(--c-muted)
+  --tw-prose-hr: var(--c-border)
+  --tw-prose-quotes: var(--c-text)
+  --tw-prose-quote-borders: var(--c-accent)
+  --tw-prose-captions: var(--c-muted)
+  --tw-prose-code: var(--c-text)
+  --tw-prose-th-borders: var(--c-border)
+  --tw-prose-td-borders: var(--c-border)
+
+a:hover
+  color: var(--c-accent)
+  cursor: pointer
+
+::-webkit-scrollbar-track
+  background-color: var(--c-bg);
+
+
+::-webkit-scrollbar
+  width: 6px;
+  height: 6px;
+
+
+::-webkit-scrollbar-thumb
+    background-color: var(--c-scrollbar);
+    border-radius: 4px;
+
+::-webkit-scrollbar-thumb:hover
+  background-color: var(--c-scrollbar-hover)
+
+.maple
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0px;
+  left: 0px;
+  background-image: url(../img/logo.svg);
+  background-size: cover;
+  will-change: transform;
+
+
+@keyframes fall
+  0%
+    transform: translate(0px, 0px);
+
+  100%
+    transform: translate(calc(100vw * var(--maple-fall-offset)), var(--maple-fall-height));
+
+
+.toc-list
+  li
+    margin-bottom: 0.3rem
+
+  ol
+    margin-top: 0.3rem
+
+.back-to-top
+  -webkit-transform: translateZ(0)
+  transition-property: bottom
+  transition-duration: 0.2s
+  transition-timing-function: ease-in-out
+  transition-delay: 0s
+
+.back-to-top.back-to-top-on
+  bottom: 30px
+
+@keyframes enter
+  0%
+    opacity: 0
+    transform: translateY(10px)
+
+  to
+    opacity: 1
+    transform: none
+
+[data-animate]
+  --stagger: 0
+  --delay: 120ms
+  --start: 0ms
+
+@media (prefers-reduced-motion:no-preference)
+  [data-animate]
+    animation: enter .6s both
+    animation-delay: calc(var(--stagger) * var(--delay) + var(--start))
+
+[data-animation-controller=false] [data-animate]
+  animation: none;
+
+.slide-enter-content
+  counter-reset: enter-count
+
+.slide-enter-content > *
+  --stagger: 0
+  --delay: 150ms
+  --start: 0ms
+  animation: enter 1s both 1
+  animation-delay: calc(var(--start) + var(--stagger) * var(--delay))
+
+.slide-enter-content > p
+  counter-increment: enter-count
+  --stagger: counter(enter-count)
+
+
+/* view-transition */
+::view-transition-old(root),
+::view-transition-new(root)
+  animation: none
+  mix-blend-mode: normal
+
+::view-transition-old(root)
+  z-index: 1
+
+::view-transition-new(root)
+  z-index: 9999
+
+.dark::view-transition-old(root)
+  z-index: 9999
+
+.dark::view-transition-new(root)
+  z-index: 1
