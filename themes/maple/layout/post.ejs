@@ -16,7 +16,7 @@
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time><%- date(page.updated, "YYYY-MM-DD") %></time>
+            <time><%- date(page.date, "YYYY-MM-DD") %></time>
           </span>
           <span class="theme-muted">·</span>
           <span class="flex items-center gap-1">
@@ -36,7 +36,7 @@
                 show_count: false,
                 class: 'article-category',
                 style: 'none',
-                separator: '/'
+                separator: ' › '
               }) %>
             </span>
           <% } %>

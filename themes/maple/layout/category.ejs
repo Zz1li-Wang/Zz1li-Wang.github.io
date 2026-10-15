@@ -20,23 +20,48 @@ how to add a category page:
 <% } else { %>
 <div class="px-6 max-w-prose mx-auto md:px-0 mt-6">
   <h2 class="font-bold text-2xl">分类</h2>
-  <ul class="mt-2">
-    <% site.categories.forEach(category =>{ %>
-      <li class="mt-2">
-        <a href="<%- url_for(category.path) %>"> <%- category.name %></a>
-        <span>(<%- category.posts.length %>)</span>
-      </li>
-    <% }) %>
+  <div class="category-tree mt-4">
+    <%- list_categories({
+      show_count: true,
+      class: 'category',
+      style: 'list'
+    }) %>
+  </div>
+  <ul class="empty-category-list">
     <% if (site.data.categories) { %>
       <% site.data.categories.forEach(name => { %>
         <% if (!site.categories.findOne({ name: name })) { %>
-          <li class="theme-muted mt-2">
-            <span><%- name %></span>
-            <span>(0)</span>
+          <li class="empty-category-item theme-muted">
+            <span class="empty-category-name"><%- name %></span>
+            <span class="category-count">0 篇</span>
           </li>
         <% } %>
       <% }) %>
     <% } %>
   </ul>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.category-tree .category-list-item').forEach(function (item) {
+      var children = item.querySelector(':scope > .category-list-child');
+      if (!children) return;
+
+      children.hidden = true;
+      var toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'category-toggle';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', '展开子分类');
+      toggle.innerHTML = '<span aria-hidden="true">›</span>';
+      toggle.addEventListener('click', function () {
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        toggle.setAttribute('aria-label', expanded ? '展开子分类' : '收起子分类');
+        item.classList.toggle('is-open', !expanded);
+        children.hidden = expanded;
+      });
+      item.prepend(toggle);
+    });
+  });
+</script>
 <% } %>

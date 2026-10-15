@@ -19,11 +19,14 @@ how to add a tag page:
 <% } else { %>
   <div class="px-6 max-w-prose mx-auto md:px-0 mt-6">
     <h2 class="font-bold text-2xl">标签</h2>
-    <ul class="mt2">
+    <p class="theme-muted mt-2 text-sm">按关键词浏览文章</p>
+    <ul class="tag-grid mt-4">
       <% site.tags.forEach(item => { %>
-        <li class="mt-2">
-          <a href="<%-url_for(item.path)%>"><%- item.name%></a>
-          <span >(<%-item.length%>)</span>
+        <li>
+          <a class="tag-card" href="<%- url_for(item.path) %>">
+            <span class="tag-name"><%- item.name %></span>
+            <span class="tag-count"><%- item.length %> 篇</span>
+          </a>
         </li>
       <% }) %>
     </ul>

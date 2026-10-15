@@ -185,3 +185,137 @@ a:hover
 
 .dark::view-transition-new(root)
   z-index: 1
+.category-tree
+  > .category-list
+    display: grid
+    gap: 0.75rem
+
+  .category-list-item
+    display: grid
+    grid-template-columns: 1.5rem minmax(0, 1fr) auto
+    align-items: center
+    column-gap: 0.5rem
+    padding: 0.75rem 1rem
+    border: 1px solid var(--c-border)
+    border-radius: 0.75rem
+    background: var(--c-surface)
+
+  .category-list-link
+    grid-column: 2
+    min-width: 0
+    font-weight: 600
+
+  .category-list-count,
+  .category-count
+    grid-column: 3
+    padding: 0.15rem 0.55rem
+    border-radius: 9999px
+    background: var(--c-accent-soft)
+    color: var(--c-accent)
+    font-size: 0.75rem
+    line-height: 1.5
+    white-space: nowrap
+
+  .category-list-count::after
+    content: ' 篇'
+
+  .category-toggle
+    grid-column: 1
+    grid-row: 1
+    width: 1.5rem
+    height: 1.5rem
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    border-radius: 0.375rem
+    color: var(--c-muted)
+
+  .category-toggle:hover
+    background: var(--c-surface-hover)
+    color: var(--c-accent)
+
+  .category-toggle span
+    font-size: 1.35rem
+    line-height: 1
+    transition: transform 0.2s ease
+
+  .is-open > .category-toggle span
+    transform: rotate(90deg)
+
+  .category-list-child
+    grid-column: 1 / -1
+    margin: 0.75rem 0 0 1.5rem
+    display: grid
+    gap: 0.5rem
+
+  .category-list-child[hidden]
+    display: none
+
+  .category-list-child .category-list-item
+    background: var(--c-bg)
+
+.empty-category-list
+  display: grid
+  gap: 0.75rem
+  margin-top: 0.75rem
+
+.empty-category-item
+  display: grid
+  grid-template-columns: 1.5rem minmax(0, 1fr) auto
+  align-items: center
+  column-gap: 0.5rem
+  padding: 0.75rem 1rem
+  border: 1px solid var(--c-border)
+  border-radius: 0.75rem
+
+.empty-category-name
+  grid-column: 2
+
+.empty-category-item .category-count
+  grid-column: 3
+  padding: 0.15rem 0.55rem
+  border-radius: 9999px
+  background: var(--c-surface)
+  font-size: 0.75rem
+  line-height: 1.5
+
+.tag-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 0.75rem
+
+.tag-card
+  min-height: 3.25rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 0.75rem
+  padding: 0.75rem 1rem
+  border: 1px solid var(--c-border)
+  border-radius: 0.75rem
+  background: var(--c-surface)
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease
+
+.tag-card:hover
+  border-color: var(--c-accent)
+  background: var(--c-surface-hover)
+  transform: translateY(-1px)
+
+.tag-name
+  min-width: 0
+  overflow-wrap: anywhere
+  font-weight: 600
+
+.tag-count
+  flex: none
+  padding: 0.15rem 0.55rem
+  border-radius: 9999px
+  background: var(--c-accent-soft)
+  color: var(--c-accent)
+  font-size: 0.75rem
+  line-height: 1.5
+  white-space: nowrap
+
+@media (max-width: 640px)
+  .tag-grid
+    grid-template-columns: minmax(0, 1fr)
