@@ -1,9 +1,10 @@
 <% if (theme.maple.enable) { %>
   <script>
     $(document).ready(function () {
-      const mapleCount = "<%= theme.maple.count %>";
-      const speed = "<%= theme.maple.speed %>";
+      const mapleCount = Number("<%= theme.maple.count %>");
+      const speed = Number("<%= theme.maple.speed %>");
       const mapleEl = document.getElementById("maple");
+      if (!mapleEl || !mapleCount || !speed) return;
       const maples = Array.from({ length: mapleCount }).map(() => {
         const maple = document.createElement("div");
         const scale = Math.random() * 0.5 + 0.5;
@@ -11,7 +12,7 @@
         const x = Math.random() * mapleEl.clientWidth;
         const y = -Math.random() * mapleEl.clientHeight;
         const duration = 10 / speed;
-        const delay = -duration;
+        const delay = -Math.random() * duration;
         maple.className = "maple";
         maple.style.width = `${24 * scale}px`;
         maple.style.height = `${24 * scale}px`;
