@@ -320,6 +320,37 @@ a:hover
   line-height: 1.5
   white-space: nowrap
 
+.pagination
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 0.5rem
+  margin: 1rem 0 3rem
+  flex-wrap: wrap
+
+  .page-number,
+  .extend,
+  .space
+    min-width: 2.25rem
+    height: 2.25rem
+    padding: 0 0.7rem
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    border-radius: 0.6rem
+
+  a
+    border: 1px solid var(--c-border)
+    transition: border-color 0.2s ease, transform 0.2s ease
+
+  a:hover
+    border-color: var(--c-accent)
+    transform: translateY(-1px)
+
+  .current
+    color: #fff
+    background: var(--c-accent)
+
 @media (max-width: 640px)
   .tag-grid
     grid-template-columns: minmax(0, 1fr)

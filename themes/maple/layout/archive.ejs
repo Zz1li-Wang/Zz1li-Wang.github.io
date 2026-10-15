@@ -5,8 +5,15 @@
         Tag - <%= path.split('/')[1] %>
       </h1>
     <% } else if (path.indexOf("categories") === 0) { %>
+      <%
+        var categoryPath = path.split('/').filter(Boolean).slice(1);
+        if (categoryPath[categoryPath.length - 1] === 'index.html') categoryPath.pop();
+        if (categoryPath.length >= 2 && categoryPath[categoryPath.length - 2] === 'page') {
+          categoryPath.splice(-2);
+        }
+      %>
       <h1 class="site-title text-4xl leading-relaxed">
-        Categories - <%= path.split('/')[1] %>
+        Categories - <%= categoryPath.join(' / ') %>
       </h1>
     <% } else { %>
       <h1 class="site-title text-4xl leading-relaxed">
@@ -52,4 +59,5 @@
     </a>
   <% }) %>
   <% } %>
+  <%- partial('_partial/paginator') %>
 </section>
